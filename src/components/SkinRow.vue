@@ -31,17 +31,11 @@ export default {
             const champion = getChamp.value
             const skins = champion.data[getName.value].skins
             state.skin = (event.target as HTMLImageElement).src.replace('loading', 'splash')
-            for (let i = 0; i < skins.length; i++) {
-                if (
-                    (event.target as HTMLImageElement).src.includes(
-                        skins[i].num
-                    )
-                ) {
-                    state.skinName = skins[skins[i].num].name
-                    break
-                }
-                state.skinName = skins[0].name
-            }
+            let skinIndex = state.skin.replace('.jpg', '')
+            skinIndex = skinIndex.substring(skinIndex.lastIndexOf('_') + 1, skinIndex.length)
+            for (let i = 0; i < state.reactiveData.data[getName.value].skins.length; i ++) {
+                if(String(state.reactiveData.data[getName.value].skins[i].num) === skinIndex) state.skinName = state.reactiveData.data[getName.value].skins[i].name
+            }2
             if (state.skinName === 'default') state.skinName = getName.value
             // eslint-disable-next-line no-undef
             const icons: NodeListOf<HTMLImageElement> = document.querySelectorAll('.skin')
