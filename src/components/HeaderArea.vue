@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import TextBody from "./TextBody.vue";
+import SkinRow from "./SkinRow.vue";
 </script>
 
 <template>
   <header>
-    <img alt="Luxanna" class="lux" src="/Lux_OriginalSkin.png" />
-
+    <SkinRow />
     <div class="wrapper">
       <TextBody msg="Let's light it up!" />
     </div>
@@ -15,14 +15,6 @@ import TextBody from "./TextBody.vue";
 <style scoped>
 header {
   line-height: 1.5;
-}
-
-.lux {
-  display: block;
-  margin: 0 auto 2rem;
-  width: 50%;
-  height: auto;
-  border-radius: 10%;
 }
 
 @media (min-width: 1024px) {

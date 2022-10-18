@@ -11,11 +11,9 @@ import AbilityArea from "./components/AbilityArea.vue";
 </template>
 
 <style scoped>
-
 .page-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 </style>

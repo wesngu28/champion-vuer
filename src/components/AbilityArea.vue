@@ -23,6 +23,7 @@ export default defineComponent({
             if(this.name === 'Prismatic Barrier') this.desc="Lux throws her wand and bends the light around any friendly target it touches, protecting them from enemy damage."
             if(this.name === 'Lucent Singularity') this.desc="Fires an anomaly of twisted light to an area, which slows nearby enemies. Lux can detonate it to damage enemies in the area of effect."
             if(this.name === 'Final Spark') this.desc="After gathering energy, Lux fires a beam of light that deals damage to all targets in the area. In addition, triggers Lux's passive ability and refreshes the Illumination debuff duration."
+            // eslint-disable-next-line no-undef
             const icons: NodeListOf<HTMLImageElement> = document.querySelectorAll('img')
             icons.forEach(icon => {
                 icon.classList.add("inactive")
