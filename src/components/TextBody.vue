@@ -1,27 +1,54 @@
-<script setup lang="ts">
-defineProps<{
-    msg: string
-}>()
+<script lang="ts">
+import { useChampStore } from '@/stores/Champ'
+import { computed, reactive, ref } from 'vue'
+
+export default {
+    setup() {
+        const store = useChampStore()
+
+        const getChamp = computed(() => {
+            return store.getChamp
+        })
+
+        const getName = computed(() => {
+            return store.getName
+        })
+
+        const reactiveData = ref(getChamp)
+
+        const state = reactive({
+            reactiveData,
+        })
+
+        console.log(state.reactiveData)
+
+        return {
+            state,
+            getChamp,
+            getName,
+        }
+    },
+}
 </script>
 
 <template>
     <div class="greetings">
-        <h1 class="yellow">{{ msg }}</h1>
-        <h2>Luxanna, the Lady of Luminosity</h2>
-
+        <h1 v-if="state.reactiveData.data[getName].name === 'Lux'" class="yellow">Let's light it up!</h1>
+        <h1 v-else class="yellow">
+            {{ state.reactiveData.data[getName].name }}
+        </h1>
+        <h2 v-if="state.reactiveData.data[getName].name === 'Lux'" class="yellow">Luxanna, the Lady of Luminosity</h2>
+        <h2 v-else class="yellow">
+            {{ state.reactiveData.data[getName].title }}
+        </h2>
         <p>
-            Luxanna Crownguard hails from Demacia, an insular realm where
-            magical abilities are viewed with fear and suspicion. Able to bend
-            light to her will, she grew up dreading discovery and exile, and was
-            forced to keep her power secret, in order to preserve her family's
-            noble status. Nonetheless, Lux's optimism and resilience have led
-            her to embrace her unique talents, and she now covertly wields them
-            in service of her homeland.
+            {{ state.reactiveData.data[getName].lore }}
         </p>
     </div>
 </template>
 
 <style scoped>
+
 h1 {
     font-weight: 500;
     font-size: 2.6rem;

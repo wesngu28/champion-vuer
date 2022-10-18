@@ -42,7 +42,7 @@ export default {
             v-model="state.text"
         />
         <button v-on:click="printMeText" :disabled="disableButton(state.text)">
-            Lux, I want you
+            Find Champion
         </button>
         <p v-if="state.resStatus === 403">
             You did not request a proper resource

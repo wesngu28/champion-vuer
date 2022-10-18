@@ -9,8 +9,8 @@ interface Stater {
 export const useChampStore = defineStore('Champ', {
     state: () =>
         ({
-            champ: {},
-            name: '',
+            champ: lux,
+            name: 'Lux',
         } as Stater),
     getters: {
         getChamp: (state) => state.champ,
@@ -23,6 +23,7 @@ export const useChampStore = defineStore('Champ', {
                     `https://ddragon.leagueoflegends.com/cdn/12.19.1/data/en_US/champion/${text}.json`
                 )
                 const champJson = await response.json()
+                console.log(champJson)
                 this.champ = champJson
                 this.name = text
             } catch (error) {

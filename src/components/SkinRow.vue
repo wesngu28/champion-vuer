@@ -1,32 +1,45 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { useChampStore } from '@/stores/Champ'
+import { computed, reactive, ref } from 'vue'
 
-export default defineComponent({
-    data() {
-        return {
-            skin: '/Lux_Original.png',
-            skinName: 'Lux',
-        }
-    },
+export default {
+    setup() {
+        const store = useChampStore()
 
-    methods: {
-        changeActiveSkin(event: Event) {
-            this.skin = (event.target as HTMLImageElement).src.replace(
-                'Icon',
-                ''
-            )
-            const lastSlash =
-                (event.target as HTMLImageElement).src.indexOf('_') + 1
-            const fileExtensionPeriod = (
-                event.target as HTMLImageElement
-            ).src.lastIndexOf('.')
-            const parseName = (event.target as HTMLImageElement).src
-                .substring(lastSlash, fileExtensionPeriod)
-                .replaceAll('_', ' ')
-            this.skinName = parseName.replace('Icon', '') + ' Lux'
+        const getChamp = computed(() => {
+            return store.getChamp
+        })
+
+        const getName = computed(() => {
+            return store.getName
+        })
+
+        const reactiveData = ref(getChamp)
+
+        const state = reactive({
+            skin: `./Lux_Original.png`,
+            skinName: '',
+            reactiveData,
+        })
+
+        const changeActiveSkin = (event: Event) => {
+            const champion = getChamp.value
+            const skins = champion.data[getName.value].skins
+            state.skin = (event.target as HTMLImageElement).src.replace('loading', 'splash')
+            for (let i = 0; i < skins.length; i++) {
+                if (
+                    (event.target as HTMLImageElement).src.includes(
+                        skins[i].num
+                    )
+                ) {
+                    state.skinName = skins[i].name
+                    break
+                }
+                state.skinName = skins[0].name
+            }
+            if (state.skinName === 'default') state.skinName = getName.value
             // eslint-disable-next-line no-undef
-            const icons: NodeListOf<HTMLImageElement> =
-                this.$el.querySelectorAll('div > div > img')
+            const icons: NodeListOf<HTMLImageElement> = document.querySelectorAll('.skin')
             icons.forEach((icon) => {
                 icon.classList.add('inactive')
             })
@@ -36,97 +49,40 @@ export default defineComponent({
             const setActive = (event.target as HTMLImageElement).classList.add(
                 'active'
             )
-        },
+        }
+
+        return {
+            state,
+            changeActiveSkin,
+            getChamp,
+            getName,
+        }
     },
-})
+}
+
 </script>
 
 <template>
     <div class="lux-wrapper">
-        <img alt="Luxanna" class="lux" :src="skin" />
-        <p>{{ skinName }}</p>
-        <div>
-            <img class="active" src="/Lux_OriginalIcon.png" />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_SorceressIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_SpellthiefIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_CommandoIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_ImperialIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_Steel_LegionIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_Star_GuardianIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_ElementalistIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_Lunar_EmpressIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_Pajama_GuardianIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_Battle_AcademiaIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_Prestige_Battle_AcademiaIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_Dark_CosmicIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_CosmicIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_PorcelainIcon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_Prestige_Battle_Academia_(2022)Icon.png"
-            />
-            <img
-                class="inactive"
-                v-on:click="changeActiveSkin"
-                src="/Lux_Prestige_PorcelainIcon.png"
-            />
+        <div v-if="
+        state.skin.includes('Lux') &&
+        Object.keys(state.reactiveData)[0]
+        "><img alt="Luxanna" class="lux"
+                :src="`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${getName}_0.jpg`" />
+        </div>
+        <div v-else-if="Object.keys(state.reactiveData)[0]"><img alt="Luxanna" class="lux" :src="state.skin" />
+        </div>
+        <p v-if="
+        state.skin.includes('Lux_Original.png') &&
+        Object.keys(state.reactiveData)[0]
+        ">{{ getName }}</p>
+        <p v-if="
+        Object.keys(state.reactiveData)[0]
+        ">{{ state.skinName }}</p>
+        <div class="skinner">
+            <img v-on:click="changeActiveSkin" v-for="image in state.reactiveData.data[getName].skins" :key="image.num"
+                :class="[image.num === 0 ? 'active' : 'inactive', 'skin']"
+                :src="`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${getName}_${image.num}.jpg`">
         </div>
     </div>
 </template>
@@ -137,13 +93,30 @@ export default defineComponent({
     flex-direction: column;
     padding: 1rem;
     align-items: center;
+    position: relative;
+    margin-bottom: 7rem;
 }
+
 .lux {
     display: block;
     margin: 0 auto 2rem;
     width: 100%;
     height: auto;
     border-radius: 10%;
+}
+
+.skinner {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: fit-content;
+    position: absolute;
+    bottom: -7rem;
+}
+
+.skin {
+    width: 5%;
+    height: auto;
 }
 
 @media (min-width: 1024px) {
