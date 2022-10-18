@@ -1,6 +1,6 @@
 <script lang="ts">
 import { useChampStore } from '@/stores/Champ'
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 
 export default {
     setup() {
@@ -17,9 +17,14 @@ export default {
         const reactiveData = ref(getChamp)
 
         const state = reactive({
-            skin: `./Lux_Original.png`,
+            skin: '',
             skinName: '',
             reactiveData,
+        })
+
+        watch(reactiveData, () => {
+            state.skin = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${getName.value}_0.jpg`
+            state.skinName = getName.value
         })
 
         const changeActiveSkin = (event: Event) => {
@@ -32,7 +37,7 @@ export default {
                         skins[i].num
                     )
                 ) {
-                    state.skinName = skins[i].name
+                    state.skinName = skins[skins[i].num].name
                     break
                 }
                 state.skinName = skins[0].name
@@ -58,27 +63,18 @@ export default {
             getName,
         }
     },
+
+    mounted() {
+        this.state.skin = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${this.getName}_0.jpg`
+    }
 }
 
 </script>
 
 <template>
     <div class="lux-wrapper">
-        <div v-if="
-        state.skin.includes('Lux') &&
-        Object.keys(state.reactiveData)[0]
-        "><img alt="Luxanna" class="lux"
-                :src="`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${getName}_0.jpg`" />
-        </div>
-        <div v-else-if="Object.keys(state.reactiveData)[0]"><img alt="Luxanna" class="lux" :src="state.skin" />
-        </div>
-        <p v-if="
-        state.skin.includes('Lux_Original.png') &&
-        Object.keys(state.reactiveData)[0]
-        ">{{ getName }}</p>
-        <p v-if="
-        Object.keys(state.reactiveData)[0]
-        ">{{ state.skinName }}</p>
+        <div><img alt="Luxanna" class="lux" :src="state.skin" /></div>
+        <p>{{ state.skinName }}</p>
         <div class="skinner">
             <img v-on:click="changeActiveSkin" v-for="image in state.reactiveData.data[getName].skins" :key="image.num"
                 :class="[image.num === 0 ? 'active' : 'inactive', 'skin']"
