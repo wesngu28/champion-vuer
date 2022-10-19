@@ -2,12 +2,13 @@
 import { computed } from 'vue'
 import { reactive } from 'vue'
 import { useChampStore } from '../stores/Champ'
+import type { SearchState } from '../models/SearchState'
 export default {
     setup() {
         const state = reactive({
             text: '',
             resStatus: 200,
-        })
+        } as SearchState)
 
         const store = useChampStore()
 

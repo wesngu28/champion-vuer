@@ -1,18 +1,20 @@
-<script setup lang="ts">
-const props = defineProps<{
-    abilityname: string
-    desc: string
-}>()
+<script lang="ts">
+export default {
+    props: {
+        abilityname: String,
+        desc: String,
+    },
+}
 </script>
 
 <template>
     <div class="ability-info">
         <div class="name">
-            <p>{{ props.abilityname }}</p>
+            <p>{{ abilityname }}</p>
         </div>
         <div class="desc">
             <p class="desc">
-                {{ props.desc }}
+                {{ desc }}
             </p>
         </div>
     </div>

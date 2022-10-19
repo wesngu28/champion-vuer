@@ -1,8 +1,9 @@
+import type { RootObject } from '@/models/DataDragon'
 import { defineStore } from 'pinia'
 import lux from './Lux.json'
 
 interface Stater {
-    champ: any
+    champ: RootObject
     name: string
 }
 
@@ -23,7 +24,6 @@ export const useChampStore = defineStore('Champ', {
                     `https://ddragon.leagueoflegends.com/cdn/12.19.1/data/en_US/champion/${text}.json`
                 )
                 const champJson = await response.json()
-                console.log(champJson)
                 this.champ = champJson
                 this.name = text
             } catch (error) {
