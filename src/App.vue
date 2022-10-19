@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HeaderArea from './components/HeaderArea.vue'
+import SkinsInfo from './components/SkinsInfo.vue'
 import AbilityArea from './components/AbilityArea.vue'
 import SearchArea from './components/SearchArea.vue'
 </script>
@@ -7,7 +7,7 @@ import SearchArea from './components/SearchArea.vue'
 <template>
     <div class="page-wrapper">
         <SearchArea />
-        <HeaderArea />
+        <SkinsInfo />
         <AbilityArea />
     </div>
 </template>

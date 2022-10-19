@@ -20,8 +20,6 @@ export default {
             reactiveData,
         })
 
-        console.log(state.reactiveData)
-
         return {
             state,
             getChamp,
@@ -33,11 +31,21 @@ export default {
 
 <template>
     <div class="greetings">
-        <h1 v-if="state.reactiveData.data[getName].name === 'Lux'" class="yellow">Let's light it up!</h1>
+        <h1
+            v-if="state.reactiveData.data[getName].name === 'Lux'"
+            class="yellow"
+        >
+            Let's light it up!
+        </h1>
         <h1 v-else class="yellow">
             {{ state.reactiveData.data[getName].name }}
         </h1>
-        <h2 v-if="state.reactiveData.data[getName].name === 'Lux'" class="yellow">Luxanna, the Lady of Luminosity</h2>
+        <h2
+            v-if="state.reactiveData.data[getName].name === 'Lux'"
+            class="yellow"
+        >
+            Luxanna, the Lady of Luminosity
+        </h2>
         <h2 v-else class="yellow">
             {{ state.reactiveData.data[getName].title }}
         </h2>
@@ -48,7 +56,6 @@ export default {
 </template>
 
 <style scoped>
-
 h1 {
     font-weight: 500;
     font-size: 2.6rem;
