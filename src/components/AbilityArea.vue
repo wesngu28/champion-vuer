@@ -71,26 +71,24 @@ export default {
 </script>
 
 <template>
-    <div>
-        <img
-            class="active ability"
-            v-on:click="(event) => changeActiveAbilityAndState(event, getChamp, getName)"
-            :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/passive/${state.champion.data[getName].passive.image.full}`"
-        />
-        <img
-            class="inactive ability"
-            v-on:click="(event) => changeActiveAbilityAndState(event, getChamp, getName)"
-            v-for="image in state.champion.data[getName].spells"
-            :key="image.id"
-            :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/spell/${image.image.full}`"
-        />
+    <div class="parent">
+        <div>
+            <img class="active ability" v-on:click="(event) => changeActiveAbilityAndState(event, getChamp, getName)"
+                :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/passive/${state.champion.data[getName].passive.image.full}`" />
+            <img class="inactive ability" v-on:click="(event) => changeActiveAbilityAndState(event, getChamp, getName)"
+                v-for="image in state.champion.data[getName].spells" :key="image.id"
+                :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/spell/${image.image.full}`" />
+        </div>
+        <AbilityInfo :desc="state.desc" :abilityname="state.name" />
     </div>
-    <AbilityInfo :desc="state.desc" :abilityname="state.name" />
 </template>
 
 <style scoped>
-div {
+.parent {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     flex-wrap: wrap;
     margin: 1rem;
     padding: 1rem;

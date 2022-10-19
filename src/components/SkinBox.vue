@@ -65,42 +65,20 @@ export default {
         <div><img alt="Luxanna" class="lux" :src="state.skin" /></div>
         <p>{{ state.skinName }}</p>
         <div class="skinner">
-            <img
-                v-on:click="(event) => changeActiveSkinAndState(event, getChamp, getName)"
-                v-for="image in state.champion.data[getName].skins"
-                :key="image.num"
+            <img v-on:click="(event) => changeActiveSkinAndState(event, getChamp, getName)"
+                v-for="image in state.champion.data[getName].skins" :key="image.num"
                 :class="[image.num === 0 ? 'active' : 'inactive', 'skin']"
-                :src="`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${getName}_${image.num}.jpg`"
-            />
+                :src="`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${getName}_${image.num}.jpg`" />
         </div>
     </div>
 </template>
 
 <style scoped>
-.lux-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    align-items: center;
-    position: relative;
-    margin-bottom: 7rem;
-}
-
-.lux {
-    display: block;
-    margin: 0 auto 2rem;
-    width: 100%;
-    height: auto;
-    border-radius: 10%;
-}
-
 .skinner {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     max-width: fit-content;
-    position: absolute;
-    bottom: -7rem;
 }
 
 .skin {
@@ -108,9 +86,46 @@ export default {
     height: auto;
 }
 
-@media (min-width: 1024px) {
+.lux-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lux {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10%;
+}
+
+p {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+}
+
+@media (min-width: 1280px) {
     .lux {
         margin: 0 2rem 0 0;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .lux-wrapper {
+        padding: 1rem;
+        position: relative;
+        margin-bottom: 7rem;
+    }
+
+    .skinner {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: fit-content;
+        position: absolute;
+        bottom: -7rem;
     }
 }
 

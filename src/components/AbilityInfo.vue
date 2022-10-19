@@ -13,7 +13,7 @@ export default {
             <p>{{ abilityname }}</p>
         </div>
         <div class="desc">
-            <p class="desc">
+            <p>
                 {{ desc }}
             </p>
         </div>
@@ -22,9 +22,12 @@ export default {
 
 <style scoped>
 .ability-info {
+    display: flex;
     width: 50vw;
     justify-content: center;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
 
 p {
@@ -32,10 +35,10 @@ p {
 }
 
 .name {
-    width: 50%;
+    width: max-content;
 }
 
 .desc {
-    width: 100%;
+    width: 50%;
 }
 </style>

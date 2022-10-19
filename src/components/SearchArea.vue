@@ -55,7 +55,7 @@ export default {
 input {
     background-color: silver;
     width: 315px;
-    height: 40px;
+    height: 35px;
 }
 
 button {
@@ -65,9 +65,7 @@ button {
     padding: 10px 10px;
     text-align: center;
     text-decoration: none;
-    border-radius: 4px;
     display: inline-block;
-    font-size: 16px;
     transition-duration: 0.4s;
 }
 

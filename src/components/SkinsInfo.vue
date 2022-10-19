@@ -13,18 +13,19 @@ import SkinBox from './SkinBox.vue'
 </template>
 
 <style scoped>
+
 .container {
-    line-height: 1.5;
+    padding: 1rem;
+}
+
+.wrapper {
+    padding: 1rem;
 }
 
 @media (min-width: 1280px) {
     .container {
         display: flex;
         justify-content: center;
-    }
-
-    .lux {
-        margin: 0 2rem 0 0;
     }
 
     .container .wrapper {
