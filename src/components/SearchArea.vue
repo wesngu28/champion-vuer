@@ -20,7 +20,7 @@ export default {
             return text.length === 0
         }
 
-        const printMeText = async (event: Event) => {
+        const printMeText = async () => {
             store.fetchChamp(state.text)
         }
         return {
