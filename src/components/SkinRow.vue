@@ -1,6 +1,6 @@
 <script lang="ts">
 import { useChampStore } from '@/stores/Champ'
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, nextTick, reactive, ref, watch } from 'vue'
 
 export default {
     setup() {
@@ -18,36 +18,42 @@ export default {
 
         const state = reactive({
             skin: '',
-            skinName: '',
+            skinName: 'Lux',
             reactiveData,
         })
 
-        watch(reactiveData, () => {
+        watch(reactiveData, async () => {
             state.skin = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${getName.value}_0.jpg`
             state.skinName = getName.value
+            nextTick(() => {
+                // eslint-disable-next-line no-undef
+                const icons: NodeListOf<HTMLImageElement> = document.querySelectorAll('.skin')
+                icons.forEach((icon) => {
+                    icon.classList.remove('active')
+                    icon.classList.add('inactive')
+                })
+                icons[0].classList.remove('inactive')
+                icons[0].classList.add('active')
+            })
         })
 
         const changeActiveSkin = (event: Event) => {
-            const champion = getChamp.value
-            const skins = champion.data[getName.value].skins
-            state.skin = (event.target as HTMLImageElement).src.replace('loading', 'splash')
+            const target = event.target as HTMLImageElement
+            state.skin = target.src.replace('loading', 'splash')
             let skinIndex = state.skin.replace('.jpg', '')
             skinIndex = skinIndex.substring(skinIndex.lastIndexOf('_') + 1, skinIndex.length)
-            for (let i = 0; i < state.reactiveData.data[getName.value].skins.length; i ++) {
-                if(String(state.reactiveData.data[getName.value].skins[i].num) === skinIndex) state.skinName = state.reactiveData.data[getName.value].skins[i].name
-            }2
+            for (let i = 0; i < state.reactiveData.data[getName.value].skins.length; i++) {
+                if (String(state.reactiveData.data[getName.value].skins[i].num) === skinIndex) state.skinName = state.reactiveData.data[getName.value].skins[i].name
+            } 2
             if (state.skinName === 'default') state.skinName = getName.value
             // eslint-disable-next-line no-undef
             const icons: NodeListOf<HTMLImageElement> = document.querySelectorAll('.skin')
             icons.forEach((icon) => {
+                icon.classList.remove('active')
                 icon.classList.add('inactive')
             })
-            const removeInactive = (
-                event.target as HTMLImageElement
-            ).classList.remove('inactive')
-            const setActive = (event.target as HTMLImageElement).classList.add(
-                'active'
-            )
+            target.classList.remove('inactive')
+            target.classList.add('active')
         }
 
         return {
@@ -60,7 +66,7 @@ export default {
 
     mounted() {
         this.state.skin = `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${this.getName}_0.jpg`
-    }
+    },
 }
 
 </script>
