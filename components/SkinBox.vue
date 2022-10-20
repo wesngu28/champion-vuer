@@ -40,7 +40,11 @@ export default {
             })
         })
 
-        const changeActiveSkinAndState = (event: Event, champ: RootObject, name: string) => {
+        const changeActiveSkinAndState = (
+            event: Event,
+            champ: RootObject,
+            name: string
+        ) => {
             const stateChanges = changeActiveSkin(event, champ, name)
             state.skin = stateChanges.skin
             state.skinName = stateChanges.skinName
@@ -62,13 +66,33 @@ export default {
 
 <template>
     <div class="lux-wrapper">
-        <div><img alt="Luxanna" class="lux" :src="state.skin" /></div>
+        <img
+            v-on:click="
+                (event) => changeActiveSkinAndState(event, getChamp, getName)
+            "
+            v-for="image in state.champion.data[getName].skins"
+            :key="image.num"
+            :class="[
+                `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${getName}_${image.num}.jpg` ===
+                state.skin
+                    ? 'slideshow'
+                    : 'dead',
+                'lux',
+            ]"
+            :src="`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${getName}_${image.num}.jpg`"
+        />
         <p>{{ state.skinName }}</p>
         <div class="skinner">
-            <img v-on:click="(event) => changeActiveSkinAndState(event, getChamp, getName)"
-                v-for="image in state.champion.data[getName].skins" :key="image.num"
+            <img
+                v-on:click="
+                    (event) =>
+                        changeActiveSkinAndState(event, getChamp, getName)
+                "
+                v-for="image in state.champion.data[getName].skins"
+                :key="image.num"
                 :class="[image.num === 0 ? 'active' : 'inactive', 'skin']"
-                :src="`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${getName}_${image.num}.jpg`" />
+                :src="`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${getName}_${image.num}.jpg`"
+            />
         </div>
     </div>
 </template>
@@ -127,6 +151,19 @@ p {
         position: absolute;
         bottom: -7rem;
     }
+}
+
+.slideshow {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+}
+
+.dead {
+    opacity: 0;
+    height: 0;
+    width: 0;
 }
 
 .active {

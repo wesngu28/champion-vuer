@@ -52,17 +52,22 @@ export default {
 </template>
 
 <style scoped>
+div {
+    padding: 1rem;
+}
+
 input {
     background-color: silver;
     width: 315px;
     height: 35px;
+    margin-right: 0.5rem;
 }
 
 button {
     background-color: #2d7d46;
     border: none;
     color: white;
-    padding: 10px 10px;
+    padding: 8px 8px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
