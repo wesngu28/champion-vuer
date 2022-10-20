@@ -1,4 +1,4 @@
 export interface SearchState {
-    text: string,
-    resStatus: number,
+    text: string
+    resStatus: number
 }

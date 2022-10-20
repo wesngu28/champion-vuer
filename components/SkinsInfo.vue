@@ -13,7 +13,6 @@ import SkinBox from './SkinBox.vue'
 </template>
 
 <style scoped>
-
 .container {
     padding: 1rem;
 }

@@ -1,6 +1,10 @@
-import type { RootObject } from "@/models/DataDragon"
+import type { RootObject } from '@/models/DataDragon'
 
-export const changeActiveSkin = (event: Event, champ: RootObject, name: string) => {
+export const changeActiveSkin = (
+    event: Event,
+    champ: RootObject,
+    name: string
+) => {
     const state = { skin: '', skinName: '' }
     const target = event.target as HTMLImageElement
     state.skin = target.src.replace('loading', 'splash')
@@ -9,18 +13,9 @@ export const changeActiveSkin = (event: Event, champ: RootObject, name: string) 
         skinIndex.lastIndexOf('_') + 1,
         skinIndex.length
     )
-    for (
-        let i = 0;
-        i < champ.data[name].skins.length;
-        i++
-    ) {
-        if (
-            String(
-                champ.data[name].skins[i].num
-            ) === skinIndex
-        )
-            state.skinName =
-                champ.data[name].skins[i].name
+    for (let i = 0; i < champ.data[name].skins.length; i++) {
+        if (String(champ.data[name].skins[i].num) === skinIndex)
+            state.skinName = champ.data[name].skins[i].name
     }
     2
     if (state.skinName === 'default') state.skinName = name

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { changeActiveAbility } from '@/helpers/changeActiveAbility'
 import type { AbilityState } from '../models/GeneralState'
-import type { RootObject } from "../models/DataDragon";
+import type { RootObject } from '../models/DataDragon'
 import { useChampStore } from '@/stores/Champ'
 import { computed, nextTick, reactive, ref, watch } from 'vue'
 import AbilityInfo from './AbilityInfo.vue'
@@ -30,7 +30,11 @@ export default {
             champion,
         })
 
-        const changeActiveAbilityAndState = (event: Event, champ: RootObject, name: string) => {
+        const changeActiveAbilityAndState = (
+            event: Event,
+            champ: RootObject,
+            name: string
+        ) => {
             const stateChanges = changeActiveAbility(event, champ, name)
             state.name = stateChanges.name
             state.desc = stateChanges.desc
@@ -62,8 +66,7 @@ export default {
     },
 
     mounted() {
-        this.state.name =
-            this.state.champion.data[this.getName].passive.name
+        this.state.name = this.state.champion.data[this.getName].passive.name
         this.state.desc =
             this.state.champion.data[this.getName].passive.description
     },
@@ -73,11 +76,24 @@ export default {
 <template>
     <div class="parent">
         <div>
-            <img class="active ability" v-on:click="(event) => changeActiveAbilityAndState(event, getChamp, getName)"
-                :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/passive/${state.champion.data[getName].passive.image.full}`" />
-            <img class="inactive ability" v-on:click="(event) => changeActiveAbilityAndState(event, getChamp, getName)"
-                v-for="image in state.champion.data[getName].spells" :key="image.id"
-                :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/spell/${image.image.full}`" />
+            <img
+                class="active ability"
+                v-on:click="
+                    (event) =>
+                        changeActiveAbilityAndState(event, getChamp, getName)
+                "
+                :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/passive/${state.champion.data[getName].passive.image.full}`"
+            />
+            <img
+                class="inactive ability"
+                v-on:click="
+                    (event) =>
+                        changeActiveAbilityAndState(event, getChamp, getName)
+                "
+                v-for="image in state.champion.data[getName].spells"
+                :key="image.id"
+                :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/spell/${image.image.full}`"
+            />
         </div>
         <AbilityInfo :desc="state.desc" :abilityname="state.name" />
     </div>
