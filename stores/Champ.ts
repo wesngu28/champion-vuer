@@ -1,5 +1,4 @@
 import type { RootObject } from '@/models/DataDragon'
-import { defineStore } from 'pinia'
 import lux from './Lux.json'
 
 interface Stater {
