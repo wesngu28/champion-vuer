@@ -6,3 +6,9 @@ node_modules
 .output
 .env
 dist
+.nuxt/*
+app.config.mjs
+components.d.ts
+imports.d.ts
+nuxt.d.ts
+.nuxt/tsconfig.json
