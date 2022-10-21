@@ -17,6 +17,7 @@ import Footer from '../components/Footer.vue';
 
 <style scoped>
 .page-wrapper {
+    min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;

@@ -10,7 +10,7 @@ export default {
 <template>
     <div class="ability-info">
         <div class="name">
-            <p>{{ abilityname }}</p>
+            <p class="abilityname">{{ abilityname }}</p>
         </div>
         <div class="desc">
             <p>
@@ -31,14 +31,23 @@ export default {
 }
 
 p {
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
+.abilityname {
+    font-weight: bold;
+}
 .name {
     width: max-content;
 }
 
 .desc {
     width: 50%;
+}
+
+@media (max-width: 1280px) {
+    .desc {
+        width: 100%;
+    }
 }
 </style>
