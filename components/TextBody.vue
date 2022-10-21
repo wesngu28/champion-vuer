@@ -76,4 +76,10 @@ h1 {
     color: rgb(218, 215, 88);
     transition: 0.4s;
 }
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.0rem
+    }
+}
 </style>

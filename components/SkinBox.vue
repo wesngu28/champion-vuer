@@ -79,6 +79,7 @@ export default {
                     : 'dead',
                 'lux',
             ]"
+            :alt="`${image.name} splash`"
             :src="`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${getName}_${image.num}.jpg`"
         />
         <p>{{ state.skinName }}</p>
@@ -90,6 +91,7 @@ export default {
                 "
                 v-for="image in state.champion.data[getName].skins"
                 :key="image.num"
+                :alt="`${image.name} loading`"
                 :class="[image.num === 0 ? 'active' : 'inactive', 'skin']"
                 :src="`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${getName}_${image.num}.jpg`"
             />
@@ -126,6 +128,23 @@ export default {
 p {
     font-size: 0.75rem;
     padding: 0.5rem;
+}
+@media (max-width: 480px) {
+
+    .lux-wrapper {
+        width: 100vw;
+        position: relative;
+    }
+    .skin {
+        width: 10%;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 800px) {
+
+    .skin {
+        width: 7%;
+    }
 }
 
 @media (min-width: 1280px) {

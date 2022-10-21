@@ -82,6 +82,7 @@ export default {
                     (event) =>
                         changeActiveAbilityAndState(event, getChamp, getName)
                 "
+                :alt="`${state.champion.data[getName].passive.name} icon`"
                 :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/passive/${state.champion.data[getName].passive.image.full}`"
             />
             <nuxt-img
@@ -92,6 +93,7 @@ export default {
                 "
                 v-for="image in state.champion.data[getName].spells"
                 :key="image.id"
+                :alt="`${image.name} icon`"
                 :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/spell/${image.image.full}`"
             />
         </div>

@@ -54,6 +54,9 @@ export default {
 <style scoped>
 div {
     padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 input {
@@ -61,6 +64,7 @@ input {
     width: 315px;
     height: 35px;
     margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 button {
