@@ -3,7 +3,7 @@ import SkinsInfo from '../components/SkinsInfo.vue'
 import AbilityArea from '../components/AbilityArea.vue'
 import SearchArea from '../components/SearchArea.vue'
 import '../assets/main.css'
-import Footer from '../components/Footer.vue';
+import Footer from '../components/Footer.vue'
 </script>
 
 <template>

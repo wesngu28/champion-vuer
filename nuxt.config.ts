@@ -1,11 +1,12 @@
 export default defineNuxtConfig({
     modules: [
-        [ '@nuxt/image-edge',
+        [
+            '@nuxt/image-edge',
             {
                 image: {
-                    domains: ['leagueoflegends.com']
-                }
-            }
+                    domains: ['leagueoflegends.com'],
+                },
+            },
         ],
         [
             '@pinia/nuxt',
