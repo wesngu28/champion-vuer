@@ -1,42 +1,10 @@
-# Nuxt 3 Minimal Starter
+# Simple Champion and Skin Viewer
+An app made with Nuxt3 and Vue that displays information gathered from Riot's Data Dragon API. The app was made with the intention of learning Vue and was eventually taken to Nuxt.
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+More information on how I felt and what I learned is within the website.
 
-## Setup
+To run it yourself, just clone the repository and run
 
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
 ```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
 npm run dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
