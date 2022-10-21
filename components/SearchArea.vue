@@ -7,7 +7,6 @@ export default {
     setup() {
         const state = reactive({
             text: '',
-            resStatus: 200,
         } as SearchState)
 
         const store = useChampStore()
@@ -16,18 +15,25 @@ export default {
             return store.getChamp
         })
 
+        const getStatus = computed(() => {
+            return store.getStatus
+        })
+
         const disableButton = (text: string) => {
             return text.length === 0
         }
 
         const printMeText = async () => {
+            state.text = state.text.replace(' ', '')
             store.fetchChamp(state.text)
+            if(getStatus.value === 403) state.text = 'Error occurred'
         }
         return {
             state,
             printMeText,
             disableButton,
             getChamp,
+            getStatus
         }
     },
 }
@@ -45,9 +51,6 @@ export default {
         <button v-on:click="printMeText" :disabled="disableButton(state.text)">
             Find Champion
         </button>
-        <p v-if="state.resStatus === 403">
-            You did not request a proper resource
-        </p>
     </div>
 </template>
 

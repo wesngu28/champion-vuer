@@ -4,6 +4,7 @@ import lux from './Lux.json'
 interface Stater {
     champ: RootObject
     name: string
+    status: number
 }
 
 export const useChampStore = defineStore('Champ', {
@@ -11,10 +12,12 @@ export const useChampStore = defineStore('Champ', {
         ({
             champ: lux,
             name: 'Lux',
+            status: 200
         } as Stater),
     getters: {
         getChamp: (state) => state.champ,
         getName: (state) => state.name,
+        getStatus: (state) => state.status,
     },
     actions: {
         async fetchChamp(text: string) {
@@ -26,8 +29,7 @@ export const useChampStore = defineStore('Champ', {
                 this.champ = champJson
                 this.name = text
             } catch (error) {
-                alert(error)
-                console.log(error)
+                this.status = 403
             }
         },
     },

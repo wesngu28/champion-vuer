@@ -52,10 +52,32 @@ export default {
         <p>
             {{ state.reactiveData.data[getName].lore }}
         </p>
+        <div class="tags">
+            <p v-for="tag in state.reactiveData.data[getName].tags">
+                {{ tag }}
+            </p>
+            <p>Difficulty: <span>{{state.reactiveData.data[getName].info.difficulty}}</span></p>
+        </div>
+        <ul>
+            <li v-for="tag in state.reactiveData.data[getName].allytips">
+                {{ tag }}
+            </li>
+        </ul>
     </div>
 </template>
 
 <style scoped>
+.tags {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.tags > p {
+    margin: 0.5rem;
+    font-weight: 600;
+}
+
 h1 {
     font-weight: 500;
     font-size: 2.6rem;
@@ -79,7 +101,7 @@ h1 {
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 2.0rem
+        font-size: 2rem;
     }
 }
 </style>
