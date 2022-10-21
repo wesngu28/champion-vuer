@@ -76,7 +76,7 @@ export default {
 <template>
     <div class="parent">
         <div>
-            <img
+            <nuxt-img
                 class="active ability"
                 v-on:click="
                     (event) =>
@@ -84,7 +84,7 @@ export default {
                 "
                 :src="`https://ddragon.leagueoflegends.com/cdn/12.19.1/img/passive/${state.champion.data[getName].passive.image.full}`"
             />
-            <img
+            <nuxt-img
                 class="inactive ability"
                 v-on:click="
                     (event) =>

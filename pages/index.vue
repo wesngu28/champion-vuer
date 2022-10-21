@@ -3,6 +3,7 @@ import SkinsInfo from '../components/SkinsInfo.vue'
 import AbilityArea from '../components/AbilityArea.vue'
 import SearchArea from '../components/SearchArea.vue'
 import '../assets/main.css'
+import Footer from '../components/Footer.vue';
 </script>
 
 <template>
@@ -10,13 +11,16 @@ import '../assets/main.css'
         <SearchArea />
         <SkinsInfo />
         <AbilityArea />
+        <Footer />
     </div>
 </template>
 
 <style scoped>
 .page-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 5rem;
 }
 </style>

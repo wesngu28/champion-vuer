@@ -10,6 +10,7 @@
         "beautify": "prettier --write ."
     },
     "devDependencies": {
+        "@nuxt/image-edge": "^1.0.0-27769790.4b27db3",
         "eslint": "^8.25.0",
         "nuxt": "3.0.0-rc.12",
         "prettier": "^2.7.1"

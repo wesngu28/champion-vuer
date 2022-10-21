@@ -66,7 +66,7 @@ export default {
 
 <template>
     <div class="lux-wrapper">
-        <img
+        <nuxt-img
             v-on:click="
                 (event) => changeActiveSkinAndState(event, getChamp, getName)
             "
@@ -83,7 +83,7 @@ export default {
         />
         <p>{{ state.skinName }}</p>
         <div class="skinner">
-            <img
+            <nuxt-img
                 v-on:click="
                     (event) =>
                         changeActiveSkinAndState(event, getChamp, getName)
