@@ -80,7 +80,7 @@ export default {
                 'lux',
             ]"
             :alt="`${image.name} splash`"
-            :src="`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${getName}_${image.num}.jpg`"
+            :src="getName.includes('Lux') ? `/Lux_Splash_${image.num}.jpg` :`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${getName}_${image.num}.jpg`"
         />
         <p>{{ state.skinName }}</p>
         <div class="skinner">
@@ -93,7 +93,7 @@ export default {
                 :key="image.num"
                 :alt="`${image.name} loading`"
                 :class="[image.num === 0 ? 'active' : 'inactive', 'skin']"
-                :src="`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${getName}_${image.num}.jpg`"
+                :src="getName.includes('Lux') ? `/Lux_Loading_${image.num}.jpg`: `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${getName}_${image.num}.jpg`"
             />
         </div>
     </div>
@@ -138,6 +138,10 @@ p {
     .skin {
         width: 10%;
     }
+
+    p {
+        font-size: 1rem;
+    }
 }
 
 @media (min-width: 480px) and (max-width: 800px) {
@@ -153,7 +157,7 @@ p {
     }
 
     p {
-        font-size: 1rem;
+        font-size: 1.25rem;
     }
 
     .lux-wrapper {

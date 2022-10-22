@@ -28,6 +28,7 @@ export const useChampStore = defineStore('Champ', {
                 const champJson = await response.json()
                 this.champ = champJson
                 this.name = text
+                this.status = 200
             } catch (error) {
                 this.status = 403
             }

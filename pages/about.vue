@@ -25,9 +25,7 @@
                     to display information about a league champion.
                 </p>
                 <p>
-                    This project was made as a means for me to learn some Vue,
-                    which also led to a bit of Nuxt, but I brought Nuxt in at
-                    the tailend so I still have much to learn about Nuxt.
+                    This project was made as a means for me to learn some Vue and Nuxt.
                 </p>
                 <ul>
                     Some thoughts I have about Vue:

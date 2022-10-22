@@ -25,6 +25,9 @@ export default {
 
         const printMeText = async () => {
             state.text = state.text.replace(' ', '')
+            state.text = state.text.replace('\'', '')
+            state.text = state.text[0].toUpperCase() + state.text.substring(1, state.text.length)
+            console.log(state.text)
             store.fetchChamp(state.text)
             if(getStatus.value === 403) state.text = 'Error occurred'
         }
@@ -47,6 +50,7 @@ export default {
             className=""
             placeholder="Enter a champion name"
             v-model="state.text"
+            @keyup.enter="printMeText"
         />
         <button v-on:click="printMeText" :disabled="disableButton(state.text)">
             Find Champion
