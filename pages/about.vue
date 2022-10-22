@@ -6,7 +6,7 @@
                     <source src="/1.mp4" type="video/mp4" />
                 </video>
             </div>
-            <div>
+            <div class="text">
                 <div class="links">
                     <img src="/github.svg" />
                     <a href="https://github.com/wesngu28/simple-champion-viewer"
@@ -46,6 +46,11 @@
                         and Nuxt2 vs Nuxt 3 online was very confusing.
                     </li>
                 </ul>
+                <h2>Legal Stuff</h2>
+                <p>
+                    Simple Champ View isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties.
+                </p>
+                <p>Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p>
             </div>
         </div>
         <Footer />
@@ -98,7 +103,6 @@ img {
     padding: 1rem;
 }
 
-h2,
 p {
     text-align: left;
     padding: 0.5rem;
@@ -119,6 +123,10 @@ li {
 
     .info-wrapper {
         flex-direction: column;
+    }
+
+    .text {
+        width: auto;
     }
 }
 </style>
