@@ -26,6 +26,7 @@ export default {
         const printMeText = async () => {
             state.text = state.text.replace(' ', '')
             state.text = state.text.replace('\'', '')
+            state.text = state.text.toLowerCase()
             state.text = state.text[0].toUpperCase() + state.text.substring(1, state.text.length)
             console.log(state.text)
             store.fetchChamp(state.text)
